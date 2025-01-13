@@ -14,6 +14,7 @@ object LText {
                 settingDialogAdjustWidthsBtnText = "Adjust Widths",
                 settingDialogBackBtnText = "Back",
                 settingDialogExit = "Exit App",
+                settingDialogExportCsv = "Export as CSV",
 
                 windowsTitle = "KVApp",
                 newGroupName = "New Group",
@@ -56,6 +57,7 @@ object LText {
                 settingDialogAdjustWidthsBtnText = "调整宽度",
                 settingDialogBackBtnText = "返回",
                 settingDialogExit = "退出应用",
+                settingDialogExportCsv = "导出为CSV",
 
                 windowsTitle = "KVApp",
                 newGroupName = "新组",
@@ -109,6 +111,7 @@ object LText {
         val settingDialogBackBtnText: String,
         val settingDialogLanguageBtnText: String,
         val settingDialogExit: String,
+        val settingDialogExportCsv: String,
 
         val windowsTitle: String,
         val newGroupName: String,

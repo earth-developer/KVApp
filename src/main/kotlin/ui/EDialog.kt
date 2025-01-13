@@ -20,6 +20,7 @@ fun SettingDialog(
     isVisible: Boolean,
     currentTheme: EThemeColor.Theme,
     currentLanguage: LText.Language,
+    onExportCsv: () -> Unit,
     onThemeChange: (EThemeColor.Theme) -> Unit,
     onLanguageChange: (LText.Language) -> Unit,
     onAdjustWidths: () -> Unit,
@@ -120,6 +121,22 @@ fun SettingDialog(
                     ) {
                         Text(
                             "${selectedLanguage.texts.settingDialogLanguageBtnText}: ${selectedLanguage.getLanguageName()}",
+                            color = selectedTheme.colors.lightBtnTextColor
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+                Box(
+                    modifier = Modifier.fillMaxWidth().padding(10.dp).align(Alignment.CenterHorizontally)
+                ) {
+                    Button(
+                        onClick = { onExportCsv() },
+                        modifier = Modifier.align(Alignment.Center).fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = selectedTheme.colors.lightBtnBackground)
+                    ) {
+                        Text(
+                            selectedLanguage.texts.settingDialogExportCsv,
                             color = selectedTheme.colors.lightBtnTextColor
                         )
                     }

@@ -22,6 +22,8 @@ import model.Group
 import model.KVItem
 import model.KVSLData
 import model.WindowsSLData
+import java.awt.Desktop
+import java.io.File
 
 
 @Composable
@@ -55,6 +57,22 @@ fun ApplicationScope.EWindow(
             onAdjustWidths = {
                 isAdjustWidths = !isAdjustWidths
                 settingDialogVisible.value = false
+            },
+            onExportCsv = {
+                val kvSLData = SLDataManager.dataMap[KVSLData.KEY] as KVSLData
+                //联合两个表
+                val csvData = kvSLData.groups.map { group ->
+                    kvSLData.kvItems.filter { it.groupId == group.id }.map { kvItem ->
+                        listOf(group.name, kvItem.title, kvItem.key, kvItem.value)
+                    }
+                }.flatten()
+                //在第一行加上标题
+                val csvDataWithTitle = listOf(listOf("Group", "Title", "Key", "Value")) + csvData
+                //导出
+                val file = File("kv_${System.currentTimeMillis()}.csv")
+                file.writeText(csvDataWithTitle.joinToString("\n") { it.joinToString(",") })
+                //打开文件 awt
+                Desktop.getDesktop().open(file)
             },
             onLanguageChange = {
                 LText.switchLanguage(it)
